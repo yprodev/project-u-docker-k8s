@@ -31,3 +31,9 @@ docker run --name <container-name> \
 ```bash
 docker build -t <image-name> -f Dockerfile.dev .
 ```
+
+---
+
+## Control Plane
+
+controlplane.com - service aggregates all the other CSPs.
