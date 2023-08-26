@@ -25,3 +25,9 @@ docker run --name <container-name> \
     <image-name>
 ```
 
+#### Build docker image from a specific Dockerfile
+
+
+```bash
+docker build -t <image-name> -f Dockerfile.dev .
+```
