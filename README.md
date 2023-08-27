@@ -32,6 +32,26 @@ docker run --name <container-name> \
 docker build -t <image-name> -f Dockerfile.dev .
 ```
 
+#### Run container with automatical deletion
+
+```bash
+docker run --rm <container-name> <image-name> 
+```
+
+### Networks
+
+#### Create a network for inter-container communication
+
+```bash
+docker network ls # Check the list of networks
+docker network create <network-name>
+
+docker run --network <network-name> \
+    --name <container-name> -d --rm \
+    <image-name>
+
+```
+
 ---
 
 ## Control Plane

@@ -9,6 +9,8 @@ const Todo = require('./models/todo');
 
 const app = express();
 
+mongoose.connect('mongodb://mongodb:27017/todos-app');
+
 app.use(bodyParser.json());
 app.use(cors());
 
@@ -49,23 +51,8 @@ app.delete('/todo/:id', async (req, res) => {
   return res.status(201).json({ message: 'Todo created' });
 });
 
-mongoose.connect(
-  'MONGO_URI',
-  {
-    userNewUrlParser: true,
-    userUnifiedTopology: true,
-  },
-  (err) => {
-    if (err) {
-      console.log('Unable to connect to MongoDB');
-      console.log(err);
-    } else {
-      console.log('Connected to MongoDB');
 
-      app.listen(PORT, () => {
-        console.log('Now listening to PORT:', PORT);
-      })
-    }
-  }
-);
+app.listen(PORT, () => {
+  console.log('Now listening to PORT:', PORT);
+});
 
