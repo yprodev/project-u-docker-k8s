@@ -9,7 +9,7 @@ const Todo = require('./models/todo');
 
 const app = express();
 
-mongoose.connect('mongodb://mongodb:27017/todos-app');
+mongoose.connect(`mongodb://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@mongodb:27017/todos-app?authSource=admin`);
 
 app.use(bodyParser.json());
 app.use(cors());

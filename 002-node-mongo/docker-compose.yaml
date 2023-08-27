@@ -1,0 +1,50 @@
+version: '3.8'
+services:
+
+
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    volumes:
+      - mongodbdata:/data/db
+    env_file:
+      - ./env/mongo.env
+
+
+  backend:
+    # Specify the Dockerfile path if no image
+    # Use this construct for default Dockerfile filename
+    build: ./backend
+    container_name: backend
+    # if you need to specify custom Dockerfile name 
+    # like: Dockerfile.dev
+    # build:
+    #   context: ./backend
+    #   dockerfile: Dockerfile
+    volumes:
+      - ./backend/src:/app/src
+    ports:
+      - 8000:8000
+    env_file:
+      - ./env/backend.env
+    depends_on:
+      - mongodb
+
+
+  frontend:
+    build: ./frontend
+    volumes:
+      - ./frontend/src:/app/src
+    ports:
+      - 3000:3000
+    # This two fields: stdin_open & tty gives us ability to run the container 
+    # in interactive mode (-it flag)
+    stdin_open: true
+    tty: true
+    depends_on: 
+      - backend
+
+volumes:
+  mongodbdata:
+
+
