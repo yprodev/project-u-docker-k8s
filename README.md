@@ -52,6 +52,19 @@ docker run --network <network-name> \
 
 ```
 
+### Volumes
+
+#### MongoDB volume to store db data
+
+Using named volume - there is no path to files on a local machine.
+Just a name - data.
+
+```bash
+docker run --name mongodb --rm \
+    --network todo-net \
+    -v data:/data/db \
+    mongo
+```
 ---
 
 ## Control Plane
